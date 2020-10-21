@@ -1,4 +1,5 @@
-﻿/edit
-/add
-/remove
-/shit
+﻿edit
+exit
+add
+remove
+help
