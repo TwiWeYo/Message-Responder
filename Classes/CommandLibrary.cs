@@ -8,48 +8,15 @@ namespace PlsRespond.Classes
 {
     class CommandLibrary
     {
-        private static string path;
-        private static List<Regex> CommandList = new List<Regex>();
+        private static List<Command> ListCommands = new List<Command>();
         static CommandLibrary()
         {
-            path = @"Files\commands.txt";
-            using (StreamReader sr = new StreamReader(path, System.Text.Encoding.UTF8))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                    CommandList.Add(new Regex($@"^/{line}(\s\w*)*$"));
-            }
+            ListCommands.Add(new Command("help", Help));
+            ListCommands.Add(new Command("edit", Edit));
+            ListCommands.Add(new Command("add", Add));
+            ListCommands.Add(new Command("remove", Remove));
         }
-        public static List<Regex> GetList() => CommandList;
-
-        public static void FindCommand(string Command, ref MessageProcessor.PerformCommand handler)
-        {
-            switch (Command)
-            {
-                case "/edit":
-                    handler = Edit;
-                    break;
-                case "/exit":
-                    Environment.Exit(0);
-                    break;
-                case "/add":
-                    handler = Add;
-                    break;
-                case "/remove":
-                    handler = Remove;
-                    break;
-                case "/help":
-                    handler = Help;
-                    break;
-                default:
-                    handler = Why;
-                    break;
-            }
-        }
-        public static string Why()
-        {
-            return ("Why?");
-        }
+        public static List<Command> GetList() => ListCommands;
         public static string Help()
         {
             return ("Helpful, isn't it?");

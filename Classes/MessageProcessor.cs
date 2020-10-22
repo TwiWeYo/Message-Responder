@@ -7,17 +7,14 @@ namespace PlsRespond.Classes
 {
     static class MessageProcessor
     {
-        public delegate string PerformCommand();
 
         private static string ReadCommand(string Message)
         {
-            foreach (Regex substr in CommandLibrary.GetList())
+            foreach (Command command in CommandLibrary.GetList())
             {
-                if (substr.IsMatch(Message))
+                if (command.IsMatch(Message))
                 {
-                    PerformCommand performer = null;
-                    CommandLibrary.FindCommand(Message.Substring(0, Message.IndexOf(" ")), ref performer);
-                    return(performer?.Invoke());
+                    return (command.Execute());
                 }
             }
             return ("Command not found");
