@@ -8,10 +8,8 @@ namespace PlsRespond.Classes
     public class Command
     {
         private Regex _name;
-        public delegate string ExecCommand();
-
-        private ExecCommand _command;
-        public Command(string name, ExecCommand command)
+        private Func<string> _command;
+        public Command(string name, Func<string> command)
         {
             _name = new Regex($@"^/{name}(\s\w*)*$");
             _command = command;

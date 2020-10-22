@@ -8,15 +8,14 @@ namespace PlsRespond.Classes
 {
     class CommandLibrary
     {
-        private static List<Command> ListCommands = new List<Command>();
+        public static List<Command> List { get; } = new List<Command>();
         static CommandLibrary()
         {
-            ListCommands.Add(new Command("help", Help));
-            ListCommands.Add(new Command("edit", Edit));
-            ListCommands.Add(new Command("add", Add));
-            ListCommands.Add(new Command("remove", Remove));
+            List.Add(new Command("help", Help));
+            List.Add(new Command("edit", Edit));
+            List.Add(new Command("add", Add));
+            List.Add(new Command("remove", Remove));
         }
-        public static List<Command> GetList() => ListCommands;
         public static string Help()
         {
             return ("Helpful, isn't it?");

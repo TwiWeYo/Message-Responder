@@ -7,14 +7,13 @@ namespace PlsRespond.Classes
 {
     static class MessageProcessor
     {
-
         private static string ReadCommand(string Message)
         {
-            foreach (Command command in CommandLibrary.GetList())
+            foreach (Command command in CommandLibrary.List)
             {
                 if (command.IsMatch(Message))
                 {
-                    return (command.Execute());
+                    return command.Execute();
                 }
             }
             return ("Command not found");
@@ -22,7 +21,7 @@ namespace PlsRespond.Classes
 
         private static string GetResponse(string Message)
         {
-            return ("I dunno");
+            return ($"I dunno how to respond to {Message}");
         }
         public static string Process(string Message)
         {
