@@ -13,14 +13,26 @@ namespace PlsRespond
         delegate void DisplayMessage(string Message);
 
         private static void ConsoleDisplay(string Message) => Console.WriteLine(Message);
+        private static void ResponseDisplay(string Message)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(Message);
+            Console.ResetColor();
+        }
         static void Main(string[] args)
         {
-            DisplayMessage mes = ConsoleDisplay;
+            DisplayMessage display;
+            string message;
+            bool isCommand = true;
             while (true)
             {
-                Console.WriteLine("Type a message or a command or type /exit to exit");
-                mes(MessageProcessor.Process(Console.ReadLine() + " "));
-
+                ConsoleDisplay("Type a message or a command or type /exit to exit");
+                message = (MessageProcessor.Process(Console.ReadLine() + " ", ref isCommand));
+                if (isCommand)
+                    display = ConsoleDisplay;
+                else
+                    display = ResponseDisplay;
+                display(message);
             }
         }
     }

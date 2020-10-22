@@ -23,12 +23,16 @@ namespace PlsRespond.Classes
         {
             return ($"I dunno how to respond to {Message}");
         }
-        public static string Process(string Message)
+        public static string Process(string message, ref bool isCommand)
         {
-            if (Message[0] == '/')
-                return (ReadCommand(Message));
+            isCommand = false;
+            if (message[0] == '/')
+            {
+                isCommand = true;
+                return (ReadCommand(message));
+            }
             else
-                return GetResponse(Message);
+                return GetResponse(message);
         }
     }
 }
