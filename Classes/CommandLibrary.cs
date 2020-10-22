@@ -15,6 +15,12 @@ namespace PlsRespond.Classes
             List.Add(new Command("edit", Edit));
             List.Add(new Command("add", Add));
             List.Add(new Command("remove", Remove));
+            List.Add(new Command("exit", Exit));
+        }
+        public static string Exit()
+        {
+            Environment.Exit(0);
+            return (null);
         }
         public static string Help()
         {

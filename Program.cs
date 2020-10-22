@@ -12,7 +12,13 @@ namespace PlsRespond
     {
         delegate void DisplayMessage(string Message);
 
-        private static void ConsoleDisplay(string Message) => Console.WriteLine(Message);
+        private static void ConsoleDisplay(string Message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(Message);
+            Console.ResetColor();
+        }
+
         private static void ResponseDisplay(string Message)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
