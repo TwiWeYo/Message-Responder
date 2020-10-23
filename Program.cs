@@ -33,7 +33,7 @@ namespace PlsRespond
             while (true)
             {
                 ConsoleDisplay("Type a message or a command or type /exit to exit");
-                message = (MessageProcessor.Process(Console.ReadLine() + " ", ref isCommand));
+                message = (MessageProcessor.Process(Console.ReadLine(), ref isCommand));
                 if (isCommand)
                     display = ConsoleDisplay;
                 else

@@ -21,18 +21,22 @@ namespace PlsRespond.Classes
 
         private static string GetResponse(string Message)
         {
-            return ($"I dunno how to respond to {Message}");
+            return ($"I dunno how to respond to \"{Message}\"");
         }
         public static string Process(string message, ref bool isCommand)
         {
             isCommand = false;
-            if (message[0] == '/')
+            if (message.Length != 0)
             {
-                isCommand = true;
-                return (ReadCommand(message));
+                if (message[0] == '/')
+                {
+                    isCommand = true;
+                    return (ReadCommand(message));
+                }
+                else
+                    return GetResponse(message);
             }
-            else
-                return GetResponse(message);
+            return ("Type something, retard");
         }
     }
 }
